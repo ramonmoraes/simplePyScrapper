@@ -9,13 +9,7 @@ class Crawler():
         self.parsed = BeautifulSoup(self.html, 'html.parser')
         self.cssStructure = options['cssStructure']
         self.get_snippet()
-        # self.find_links()
         pass
-
-    # def find_links(self):
-    #     links = self.parsed.findAll('a')
-    #     print(links)
-    #     pass
 
     def get_snippet(self):
         print(self.parsed.find('h1', {'class':'afd-title-big'}).string)
