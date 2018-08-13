@@ -31,7 +31,3 @@ class Elements():
             if list_item.startswith(starting_with):
                     starting_with_list.append(list_item)
         return starting_with_list
-    
-html = requests.get('https://www.archdaily.com.br/br/899761/todays-rising-stars-in-design-metropolis-magazine-reveals-their-picks').text
-css = Elements(html).find_all("h1.afd-title-big")
-print(css)
