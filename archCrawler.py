@@ -4,10 +4,7 @@ from bs4 import BeautifulSoup
 CRAWLER_URL = 'https://www.archdaily.com.br/br/899761/todays-rising-stars-in-design-metropolis-magazine-reveals-their-picks'
 
 class Crawler():
-    def __init__(self, options):
-        self.html = requests.get(options['url']).text
-        self.parsed = BeautifulSoup(self.html, 'html.parser')
-        self.cssStructure = options['cssStructure']
+    def __init__(self, url):
         self.get_snippet()
         pass
 
@@ -16,12 +13,4 @@ class Crawler():
         pass
 
 
-cssSnipetStructure = {
-    'title': 'h1.afd-title',
-    'text': 'article'
-}
-
-c = Crawler({
-    'url': CRAWLER_URL,
-    'cssStructure': cssSnipetStructure
-})
+c = Crawler(CRAWLER_URL)
