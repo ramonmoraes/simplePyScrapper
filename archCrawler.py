@@ -1,18 +1,19 @@
-import requests
+from Crawler import Crawler
 
-from Elements import Elements
-from bs4 import BeautifulSoup
+class ArchCrawler(Crawler):
+    URL = 'https://www.archdaily.com.br/br/899761/todays-rising-stars-in-design-metropolis-magazine-reveals-their-picks'
 
-CRAWLER_URL = 'https://www.archdaily.com.br/br/899761/todays-rising-stars-in-design-metropolis-magazine-reveals-their-picks'
+    def __init__(self):
+        super().__init__(self.URL)
 
-class Crawler():
-    def __init__(self, url):
-        self.get_snippet()
-        self.elements = Elements(requests.get(url).text)
-        pass
+    def get_title(self):
+        return 'title'
+    
+    def get_text(self):
+        return 'text'
 
-    def get_snippet(self):
-        pass
+    def get_img(self):
+        return 'img'
 
-
-c = Crawler(CRAWLER_URL)
+arch = ArchCrawler()
+print(arch.get_snippet())
