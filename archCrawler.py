@@ -1,4 +1,5 @@
 from Crawler import Crawler
+from bs4 import BeautifulSoup
 
 class ArchCrawler(Crawler):
     URL = 'https://www.archdaily.com.br/br/899761/todays-rising-stars-in-design-metropolis-magazine-reveals-their-picks'
@@ -7,13 +8,14 @@ class ArchCrawler(Crawler):
         super().__init__(self.URL)
 
     def get_title(self):
-        return 'title'
+        return self.elements.find('h1', {'class': 'afd-title-big'}).get_text()
     
     def get_text(self):
-        return 'text'
+        article = self.elements.find('article')
+        return article.findAll("p" , recursive=True)
 
     def get_img(self):
-        return 'img'
+        return self.elements.find('picture').find('img')['src']
 
 arch = ArchCrawler()
 print(arch.get_snippet())
