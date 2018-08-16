@@ -8,14 +8,14 @@ class JNCrawler(Crawler):
         super().__init__(self.URL)
 
     def get_title(self):
-        return self.elements.find('h1', {'class': 'entry-title'}).get_text()
+        return self.elements.find('h1', {'class' : 'entry-title'}).get_text()
     
     def get_text(self):
-        article = self.elements.find('div', {'class':'entry-content'})
+        article = self.elements.find('div', {'class' : 'entry-content'})
         return article.findAll("p" , recursive=True)
 
     def get_img(self):
-        return self.elements.find('div', {'class':'ytp-cued-thumbnail-overlay-image'}).attr('style')
+        return self.elements.find('div', {'class' : 'ytp-cued-thumbnail-overlay-image'}).attr('style')
 
 jn = JNCrawler()
 print(jn.get_snippet())
