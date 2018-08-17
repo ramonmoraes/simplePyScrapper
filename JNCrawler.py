@@ -15,7 +15,7 @@ class JNCrawler(Crawler):
         return article.findAll("p" , recursive=True)
 
     def get_img(self):
-        return self.elements.find('div', {'class' : 'ytp-cued-thumbnail-overlay-image'}).attr('style')
+        return self.elements.findAll('div', {'class' : 'ytp-cued-thumbnail-overlay-image'})
 
 jn = JNCrawler()
 print(jn.get_snippet())
