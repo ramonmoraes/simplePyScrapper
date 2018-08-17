@@ -7,7 +7,6 @@ class Crawler():
         self.elements = BeautifulSoup(requests.get(url).text, 'html.parser')
         self.domain = self.get_domain(url)
         self.links = self.get_links()
-        print(self.links)
         pass
 
     def get_domain(self, url):
@@ -15,9 +14,9 @@ class Crawler():
         return re.search(domainRegex, url,re.IGNORECASE).group(1)
 
     def get_links(self):
-        everySiteLink = self.elements.findAll('a')
+        every_site_link = self.elements.findAll('a', href=True)
         link_list = []
-        for link in everySiteLink:
+        for link in every_site_link:
             if self.domain in link.get('href'):
                 link_list.append(link.get('href'))
         return link_list
