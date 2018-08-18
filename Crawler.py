@@ -21,10 +21,19 @@ class Crawler():
                 link_list.append(link.get('href'))
         return link_list
 
+    def __get_img(self):
+        img = self.get_img()
+        if (img != None):
+            return img
+        return self.get_favicon()
+    
+    def get_favicon(self):
+        return self.elements.find('link', rel='shortcut icon').get('href')
+
     def get_snippet(self):
         return {
             'title': self.get_title(),
             'text': self.get_text(),
-            'img': self.get_img()
+            'img': self.__get_img()
         }
         
