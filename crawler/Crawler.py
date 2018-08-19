@@ -15,7 +15,9 @@ class Crawler():
             return self.clean_url(url[1:])
         if (url.startswith('www.')):
             return 'http://' + url
-        return url
+        if (url.startswith('http')):
+            return url
+        return 'http://www.' + url
         
     def get_domain(self, url):
         domainRegex = '(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)' 
