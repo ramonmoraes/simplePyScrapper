@@ -8,11 +8,25 @@ class ArchCrawler(Crawler):
         super().__init__(url)
 
     def get_title(self):
-        return self.elements.find('h1', {'class': 'afd-title-big'}).get_text()
+        titleElement = self.elements.find('h1', {'class': 'afd-title-big'}) 
+        if (titleElement == None):
+            return None
+        return titleElement.get_text()
     
     def get_text(self):
         article = self.elements.find('article')
-        return article.findAll("p" , recursive=True)
+        if (article == None):
+            return None
+        articles = article.findAll("p" , recursive=True)
+        if (len(articles) == 0):
+            return None
+        text = ''
+        for paragraphs in articles:
+            text += paragraphs.get_text()
+        return text
 
     def get_img(self):
-        return self.elements.find('picture').find('img')['src']
+        imgElement = self.elements.find('picture')
+        if (imgElement == None):
+            return None
+        return imgElement.find('img')['src']
