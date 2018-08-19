@@ -45,6 +45,7 @@ class Crawler():
         if (self.get_text() == None or self.get_title() == None):
             return None
         return {
+            'url': self.url,
             'title': self.get_title(),
             'text': self.get_text(),
             'img': self.__get_img()
