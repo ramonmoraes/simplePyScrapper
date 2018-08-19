@@ -4,11 +4,19 @@ from bs4 import BeautifulSoup
 
 class Crawler():
     def __init__(self, url):
-        self.elements = BeautifulSoup(requests.get(url).text, 'html.parser')
-        self.domain = self.get_domain(url)
+        self.url = self.clean_url(url)
+        self.elements = BeautifulSoup(requests.get(self.url).text, 'html.parser')
+        self.domain = self.get_domain(self.url)
         self.links = self.get_links()
         pass
-
+        
+    def clean_url(self, url):
+        if (url.startswith('/')):
+            return self.clean_url(url[1:])
+        if (url.startswith('www.')):
+            return 'http://' + url
+        return url
+        
     def get_domain(self, url):
         domainRegex = '(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)' 
         return re.search(domainRegex, url,re.IGNORECASE).group(1)
@@ -28,9 +36,14 @@ class Crawler():
         return self.get_favicon()
     
     def get_favicon(self):
-        return self.elements.find('link', rel='shortcut icon').get('href')
+        favicon = self.elements.find('link', rel='shortcut icon')
+        if (favicon != None):
+            return favicon.get('href')
+        return None
 
     def get_snippet(self):
+        if (self.get_text() == None or self.get_title() == None):
+            return None
         return {
             'title': self.get_title(),
             'text': self.get_text(),
