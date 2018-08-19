@@ -31,7 +31,6 @@ class Crawler():
         return self.elements.find('link', rel='shortcut icon').get('href')
 
     def get_snippet(self):
-        print(self.links)
         return {
             'title': self.get_title(),
             'text': self.get_text(),

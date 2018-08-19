@@ -1,9 +1,9 @@
-from crawler import Crawler
+from crawler.Crawler import Crawler
 from bs4 import BeautifulSoup
 
 class JNCrawler(Crawler):
     URL = 'https://jovemnerd.com.br/nerdbunker/vikings-quinta-temporada-ganha-trailer-brutal/'
-    def __init__(self):
+    def __init__(self, url):
         super().__init__(self.URL)
 
     def get_sub_path(self):
