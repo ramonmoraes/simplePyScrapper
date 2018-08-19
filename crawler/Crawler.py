@@ -19,7 +19,7 @@ class Crawler():
         for link in every_site_link:
             if self.domain in link.get('href'):
                 same_domain_link_list.append(link.get('href'))
-        return same_domain_link_list
+        return list(set(same_domain_link_list))
 
     def __get_img(self):
         img = self.get_img()
