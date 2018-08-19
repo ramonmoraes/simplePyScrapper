@@ -15,11 +15,11 @@ class Crawler():
 
     def get_links(self):
         every_site_link = self.elements.findAll('a', href=True)
-        link_list = []
+        same_domain_link_list = []
         for link in every_site_link:
             if self.domain in link.get('href'):
-                link_list.append(link.get('href'))
-        return link_list
+                same_domain_link_list.append(link.get('href'))
+        return same_domain_link_list
 
     def __get_img(self):
         img = self.get_img()
@@ -31,6 +31,7 @@ class Crawler():
         return self.elements.find('link', rel='shortcut icon').get('href')
 
     def get_snippet(self):
+        print(self.links)
         return {
             'title': self.get_title(),
             'text': self.get_text(),

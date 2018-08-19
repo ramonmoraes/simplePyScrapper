@@ -1,4 +1,4 @@
-from Crawler import Crawler
+from crawler import Crawler
 from bs4 import BeautifulSoup
 
 class ArchCrawler(Crawler):
@@ -16,6 +16,3 @@ class ArchCrawler(Crawler):
 
     def get_img(self):
         return self.elements.find('picture').find('img')['src']
-
-arch = ArchCrawler()
-print(arch.get_snippet())
