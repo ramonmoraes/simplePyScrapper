@@ -2,10 +2,10 @@ from crawler.Crawler import Crawler
 from bs4 import BeautifulSoup
 
 class ArchCrawler(Crawler):
-    URL = 'https://www.archdaily.com.br/br/899761/todays-rising-stars-in-design-metropolis-magazine-reveals-their-picks'
+    URL = 'https://www.archdaily.com.br/br/artigos'
 
-    def __init__(self, url):
-        super().__init__(self.URL)
+    def __init__(self, url = URL):
+        super().__init__(url)
 
     def get_title(self):
         return self.elements.find('h1', {'class': 'afd-title-big'}).get_text()
