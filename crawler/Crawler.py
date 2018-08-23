@@ -1,6 +1,7 @@
 import requests
 import re
 from bs4 import BeautifulSoup
+from snippet.Snippet import Snippet
 
 class Crawler():
     def __init__(self, url):
@@ -46,10 +47,11 @@ class Crawler():
     def get_snippet(self):
         if (self.get_text() == None or self.get_title() == None):
             return None
-        return {
-            'url': self.url,
-            'title': self.get_title(),
-            'text': self.get_text(),
-            'img': self.__get_img()
-        }
+            
+        return Snippet(
+            self.url,
+            self.get_title(),
+            self.get_text(),
+            self.__get_img()
+        )
         
