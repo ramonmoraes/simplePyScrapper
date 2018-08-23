@@ -11,7 +11,7 @@ class Snippet():
         self.img = img
 
     @info_required
-    def get(self):
+    def get_dict(self):
         return {
             'url': self.url,
             'title': self.title,
@@ -20,5 +20,6 @@ class Snippet():
         }
 
     def save_db(self):
-        snippets = get_db()['snippets']
-        snippets.add_one(self.get())
+        snippet = self.get()
+        print ('Saving {}').format(snippet)
+        get_db()['snippets'].add_one(snippet)
