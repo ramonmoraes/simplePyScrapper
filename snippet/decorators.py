@@ -3,5 +3,5 @@ def info_required(fn):
         if arg.title == None or arg.text == None:
             print ('Title and Text are required for a snippet')
             return
-        return fn
+        return fn(arg)
     return inner
