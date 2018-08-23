@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 from snippet.__init__ import get_db
-from snippet.decorator import info_required
+from snippet.decorators import info_required
     
 class Snippet():
     def __init__(self, url, title, text, img):
