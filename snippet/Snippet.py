@@ -1,5 +1,6 @@
 from pymongo import MongoClient
-from snippet.__init__ import snippets
+
+from snippet.__init__ import get_db
 
 class Snippet():
     def __init__(self, url, title, text, img):
@@ -17,4 +18,5 @@ class Snippet():
         }
 
     def save_db(self):
+        snippets = get_db()['snippets']
         snippets.add_one(self.get())
