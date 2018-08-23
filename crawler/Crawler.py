@@ -45,9 +45,6 @@ class Crawler():
         return None
 
     def get_snippet(self):
-        if (self.get_text() == None or self.get_title() == None):
-            return None
-            
         return Snippet(
             self.url,
             self.get_title(),
