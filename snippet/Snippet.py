@@ -20,6 +20,6 @@ class Snippet():
         }
 
     def save_db(self):
-        snippet = self.get()
-        print ('Saving {}').format(snippet)
-        get_db()['snippets'].add_one(snippet)
+        snippet = self.get_dict()
+        print ('Saving {}'.format(snippet))
+        get_db()['snippets'].insert_one(snippet)
