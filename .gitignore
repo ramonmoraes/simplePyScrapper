@@ -1,3 +1,4 @@
 pyEnv/
 .vscode/
 data/
+.env
