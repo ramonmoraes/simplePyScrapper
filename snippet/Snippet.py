@@ -18,7 +18,8 @@ class Snippet():
             'text': self.text,
             'img': self.img
         }
-
+        
+    @info_required
     def save_db(self):
         snippet = self.get_dict()
         print ('Saving {}'.format(snippet))
