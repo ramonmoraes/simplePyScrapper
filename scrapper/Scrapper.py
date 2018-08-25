@@ -1,9 +1,10 @@
 class Scrapper():
-    def __init__(self, parser, url, save = False):
+    def __init__(self, parser, url, save = False, request_throttle = 0):
         self.parser = parser
         self.url = url
         self.snippet_list = []
         self.save = save
+        self.request_throttle = request_throttle
     
     def get_snippet(self):
         return self.parser.get_snippet()
@@ -13,8 +14,12 @@ class Scrapper():
         for link in links:
             print("Scrapping link" + link)
             newParser = self.parser(link)
+            time.sleep(self.request_throttle)
             self.handle_snippet(newParser.get_snippet())
-        
+
+    def _scrap():
+            
+
     def handle_snippet(self, snippet):
         s_dict = snippet.get_dict()
         if s_dict == None:
