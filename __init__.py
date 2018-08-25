@@ -1,16 +1,12 @@
 import json
+import os
 
-from utils.SnippetWritter import SnippetWritter
-from crawler.ArchCrawler import ArchCrawler
+from scrapper.parser.ArchParser import ArchParser
+from scrapper.Scrapper import Scrapper
 
-arc = ArchCrawler()
-links = arc.links
-if (len(links) > 40):
-    links = links[30:]
-
-snippets = {
-    'snippets' : list(filter(lambda link: ArchCrawler(link).get_snippet() != None, links))
-}
-
-with open('./data/data.json', 'w') as jsonFile:
-    json.dump(snippets, jsonFile, ensure_ascii=False)
+scrapper = Scrapper(
+    ArchParser,
+    'https://archdaily.com.br/br/899761/todays-rising-stars-in-design-metropolis-magazine-reveals-their-picks'
+    )
+scrapper.scrap(1)
+print(len(scrapper.parser_list))
