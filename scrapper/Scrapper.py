@@ -1,3 +1,5 @@
+import time
+
 class Scrapper():
     def __init__(self, parser, url, save = False, request_throttle = 0):
         self.parser = parser
@@ -5,9 +7,6 @@ class Scrapper():
         self.snippet_list = []
         self.save = save
         self.request_throttle = request_throttle
-    
-    def get_snippet(self):
-        return self.parser.get_snippet()
     
     def scrap(self, deepness = 0):
         links = self.parser(self.url).links
