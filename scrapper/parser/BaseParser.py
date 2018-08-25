@@ -29,9 +29,15 @@ class BaseParser():
         every_site_link = self.elements.findAll('a', href=True)
         same_domain_link_list = []
         for link in every_site_link:
-            if self.domain in link.get('href'):
+            if self.domain in link.get('href') and self.valid_link(link.get('href')):
                 same_domain_link_list.append(link.get('href'))
         return list(set(same_domain_link_list))
+
+    def valid_link(self, url):
+        valid_link_regex = re.compile('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+        if re.match(valid_link_regex, url):
+            return True
+        return False
 
     def __get_img(self):
         img = self.get_img()
