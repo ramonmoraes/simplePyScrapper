@@ -17,9 +17,6 @@ class Scrapper():
             time.sleep(self.request_throttle)
             self.handle_snippet(newParser.get_snippet())
 
-    def _scrap():
-            
-
     def handle_snippet(self, snippet):
         s_dict = snippet.get_dict()
         if s_dict == None:
