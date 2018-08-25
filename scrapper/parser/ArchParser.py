@@ -1,7 +1,7 @@
-from crawler.Crawler import Crawler
+from scrapper.parser.BaseParser import BaseParser
 from bs4 import BeautifulSoup
 
-class ArchCrawler(Crawler):
+class ArchParser(BaseParser):
     URL = 'https://www.archdaily.com.br/br/artigos'
 
     def __init__(self, url = URL):

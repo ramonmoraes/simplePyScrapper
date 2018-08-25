@@ -1,7 +1,7 @@
-from crawler.Crawler import Crawler
+from scrapper.parser.BaseParser import BaseParser
 from bs4 import BeautifulSoup
 
-class JNCrawler(Crawler):
+class JNParser(BaseParser):
     URL = 'https://jovemnerd.com.br/nerdbunker/'
     def __init__(self, url = URL):
         super().__init__(url)

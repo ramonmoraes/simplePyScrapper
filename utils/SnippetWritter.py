@@ -1,22 +1,22 @@
 import json
-from crawler.JNCrawler import JNCrawler
+from scrapper.parser.JNParser import JNParser
 
 class SnippetWritter():
-    def __init__(self, crawler, filePath='data/data.json'):
-        self.crawler = crawler
+    def __init__(self, parser, filePath='data/data.json'):
+        self.parser = parser
         self.filePath = filePath
         self.write()
         pass
 
     def write():
         snippetList = []
-        links = self.crawler.links
+        links = self.parser.links
         if (len(links) > 40):
             links = links[30:]
 
         for link in links:
             print('Crawling page :' + link)
-            snippet = self.crawler(link).get_snippet() 
+            snippet = self.parser(link).get_snippet() 
             if (snippet != None):
                 snippetList.append(snippet)
         

@@ -1,9 +1,10 @@
 import requests
 import re
+
 from bs4 import BeautifulSoup
 from snippet.Snippet import Snippet
 
-class Crawler():
+class BaseParser():
     def __init__(self, url):
         self.url = self.clean_url(url)
         self.elements = BeautifulSoup(requests.get(self.url).text, 'html.parser')
