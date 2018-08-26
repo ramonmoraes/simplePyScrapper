@@ -2,7 +2,7 @@ import time
 import re
 
 class Scrapper():
-    def __init__(self, parser, url, save = False, request_throttle = 1, max_links = 5):
+    def __init__(self, parser, url, save = False, request_throttle = 1, max_links = 50):
         self.parser = parser
         self.url = url
         self.parser_list = [parser(url)]
@@ -11,25 +11,32 @@ class Scrapper():
         self.max_links = max_links
     
     def scrap(self, deepness = 0):
-            links = self.parser_list[0].links[:self.max_links]
-            print("[Scrapper] Starting with {} links to be parsed".format(len(links)))
-            self._scrap(deepness, links)
+        links = self.parser_list[0].links[:self.max_links]
+        print("[Scrapper] Starting with {} links to be parsed".format(len(links)))
+        self._scrap(deepness)
 
-    def _scrap(self, deepness, links):
-        diff_links = []
-        for new_parser in self.parser_list:
-            diff_links = self.get_unique_list(new_parser.links, links)
-        diff_links = diff_links[:self.max_links]
-        print("{} diff links found: ".format(len(links)))
+    def _scrap(self, deepness):
+        already_parsed_links = list(map(lambda parser: parser.url, self.parser_list))
+        links_in_parsed_pages = []
+        for par in self.parser_list:
+            links_in_parsed_pages += par.links 
 
-        for link in diff_links:
-            print("[Scrapper] scrapping {}".format(link))
-            self.parser_list.append(self.parser(link))
+        non_parsed_link = self.get_unique_list(links_in_parsed_pages, already_parsed_links)[:self.max_links]
+        print("{} diff links found: ".format(len(non_parsed_link)))
+
+        for link in non_parsed_link:
             time.sleep(self.request_throttle)
-        print("{} links were parsed".format(len(links)))
+            try:
+                print('[Scrapper] Parsing {}'.format(link))
+                self.parser_list.append(self.parser(link))
+            except Exception as err:
+                print('[Scrapper] Could not parse {}'.format(link))
+                print(err)
+
         if deepness > 0:
-            self._scrap(deepness - 1, links + diff_links)
-            
+            self._scrap(deepness - 1)
+            return
+  
         self.parse()
 
     def parse(self):
