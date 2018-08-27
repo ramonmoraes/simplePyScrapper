@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from snippet.__init__ import get_db
+from snippet import get_db
 app = Flask(__name__)
 
 @app.route("/")

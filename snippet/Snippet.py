@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-from snippet.__init__ import get_db
+from snippet import get_db
 from snippet.decorators import info_required
 
 class Snippet:
