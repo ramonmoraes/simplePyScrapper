@@ -3,9 +3,10 @@ from bs4 import BeautifulSoup
 
 class ArchParser(BaseParser):
     URL = 'https://www.archdaily.com.br/br/artigos'
+    collection_name = 'arch'
 
     def __init__(self, url = URL):
-        super().__init__(url)
+        super().__init__(url, collection_name)
 
     def get_title(self):
         titleElement = self.elements.find('h1', {'class': 'afd-title-big'}) 

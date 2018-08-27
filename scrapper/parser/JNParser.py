@@ -3,8 +3,10 @@ from bs4 import BeautifulSoup
 
 class JNParser(BaseParser):
     URL = 'https://jovemnerd.com.br/nerdbunker/'
+    collection_name = 'nerd'
+
     def __init__(self, url = URL):
-        super().__init__(url)
+        super().__init__(url, collection_name)
 
     def get_sub_path(self):
         return '/nerdbunker'
