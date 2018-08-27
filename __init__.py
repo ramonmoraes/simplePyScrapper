@@ -7,7 +7,7 @@ from scrapper.Scrapper import Scrapper
 # run_type = argv[2] if len(argv) > 3 or 'crawler'
 
 # if run_type == 'web'::
-from view.__init__ import app
+from server.__init__ import app
 app.run()
 # else:
 #     print('not web')
