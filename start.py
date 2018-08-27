@@ -2,13 +2,15 @@ from sys import argv
 
 from scrapper.parser.ArchParser import ArchParser
 from scrapper.Scrapper import Scrapper
+from server import app
 
-# collection_name = argv[1] if len(argv) > 2 or 'snippets' 
-# run_type = argv[2] if len(argv) > 3 or 'crawler'
+@app.shell_context_processor
+def make_shell_context():
+    return dict(app=app)
 
-# if run_type == 'web'::
-from server.__init__ import app
-app.run()
+if __name__ == '__main__':
+  app.run()
+
 # else:
 #     print('not web')
 # url = 'https://archdaily.com.br/br/899761/todays-rising-stars-in-design-metropolis-magazine-reveals-their-picks'
