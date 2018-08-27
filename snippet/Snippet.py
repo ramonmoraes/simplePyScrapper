@@ -2,8 +2,8 @@ from pymongo import MongoClient
 
 from snippet.__init__ import get_db
 from snippet.decorators import info_required
-    
-class Snippet():
+
+class Snippet:
     def __init__(self, url, title, text, img):
         self.url = url
         self.title = title
@@ -18,7 +18,7 @@ class Snippet():
             'text': self.text,
             'img': self.img
         }
-        
+
     @info_required
     def save_db(self, collection_name = 'snippets'):
         snippet = self.get_dict()

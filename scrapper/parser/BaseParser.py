@@ -4,7 +4,7 @@ import re
 from bs4 import BeautifulSoup
 from snippet.Snippet import Snippet
 
-class BaseParser():
+class BaseParser:
     def __init__(self, url, collection_name = 'snippets'):
         self.url = self.clean_url(url)
         self.collection_name = collection_name
@@ -12,7 +12,7 @@ class BaseParser():
         self.domain = self.get_domain(self.url)
         self.links = self.get_links()
         pass
-        
+
     def clean_url(self, url):
         if (url.startswith('/')):
             return self.clean_url(url[1:])
@@ -21,9 +21,9 @@ class BaseParser():
         if (url.startswith('http')):
             return url
         return 'http://www.' + url
-        
+
     def get_domain(self, url):
-        domainRegex = '(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)' 
+        domainRegex = '(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)'
         return re.search(domainRegex, url,re.IGNORECASE).group(1)
 
     def get_links(self):
@@ -45,7 +45,7 @@ class BaseParser():
         if (img != None):
             return img
         return self.get_favicon()
-    
+
     def get_favicon(self):
         favicon = self.elements.find('link', rel='shortcut icon')
         if (favicon != None):
@@ -59,4 +59,3 @@ class BaseParser():
             self.get_text(),
             self.__get_img()
         )
-        
