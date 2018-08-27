@@ -20,7 +20,7 @@ class Snippet():
         }
         
     @info_required
-    def save_db(self):
+    def save_db(self, collection_name = 'snippets'):
         snippet = self.get_dict()
         print ('Saving {}'.format(snippet))
-        get_db()['snippets'].insert_one(snippet)
+        get_db()[collection_name].insert_one(snippet)
