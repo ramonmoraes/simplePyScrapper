@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from snippet.Snippet import Snippet
 
 class BaseParser():
-    def __init__(self, url, collection_name):
+    def __init__(self, url, collection_name = 'snippets'):
         self.url = self.clean_url(url)
         self.collection_name = collection_name
         self.elements = BeautifulSoup(requests.get(self.url).text, 'html.parser')

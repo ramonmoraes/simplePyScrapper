@@ -52,6 +52,6 @@ class Scrapper():
         if s_dict == None:
             return
         if self.save == True:
-            snippet.save_db()
+            snippet.save_db(self.parser.collection_name)
         else:
             print("[Got snippet]")
