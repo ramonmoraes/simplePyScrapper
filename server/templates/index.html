@@ -1,11 +1,7 @@
 {% include "head.html" %}
 <body>
     <style>
-        h1 {
-            text-align: center;
-        }
-
-        p {
+    p {
             max-height: 250px;
             overflow: auto;
         }
@@ -17,7 +13,7 @@
     </style>
     <h1> Basic View </h1>
     {% for sd in snippets %}
-    <div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="snippet col s12 m8 offset-m2 l6 offset-l3">
         <div class="card-panel grey lighten-5 z-depth-1">
             <div class="row valign-wrapper">
                 <div class="col s2">
