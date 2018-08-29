@@ -18,8 +18,8 @@ class Scrapper:
     def _scrap(self, deepness):
         already_parsed_links = list(map(lambda parser: parser.url, self.parser_list))
         links_in_parsed_pages = []
-        for par in self.parser_list:
-            links_in_parsed_pages += par.links
+        for parser in self.parser_list:
+            links_in_parsed_pages += parser.links
 
         non_parsed_link = self.get_unique_list(links_in_parsed_pages, already_parsed_links)[:self.max_links]
         print("{} diff links found: ".format(len(non_parsed_link)))
