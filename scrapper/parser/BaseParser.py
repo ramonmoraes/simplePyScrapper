@@ -57,5 +57,6 @@ class BaseParser:
             self.url,
             self.get_title(),
             self.get_text(),
-            self.__get_img()
+            self.__get_img(),
+            self.collection_name
         )
