@@ -9,10 +9,13 @@ class MTVnews(BaseParser):
         super().__init__(url, collection)
 
     def get_title(self):
-        titleElement = self.elements.find('div', { 'class': 'headline-bar'}).find('h1')
+        titleElement = self.elements.find('div', { 'class': 'headline-bar'})
         if titleElement == None:
             return None
-        return titleElement.get_text()
+        title = titleElement.find('h1')
+        if title == None:
+            return None
+        return title.get_text()
     
     def get_text(self):
         content = self.elements.find('div', { 'class': 'blockContent'})
@@ -24,4 +27,7 @@ class MTVnews(BaseParser):
         imgElement = self.elements.find('div', {'class' : 'lowres-img'})
         if (imgElement == None):
             return None
-        return imgElement.find('img')['src']
+        img = imgElement.find('img')
+        if (img == None):
+            return None
+        return img['src']
